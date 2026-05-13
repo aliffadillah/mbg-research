@@ -1,4 +1,4 @@
-# 🍏 NutriSight
+# NutriSight
 
 > **Platform Cerdas Analisis dan Estimasi Gizi Makanan Berbasis AI & Computer Vision**
 
@@ -8,7 +8,7 @@
 
 ---
 
-## 🏗️ Arsitektur Sistem
+## Arsitektur Sistem
 
 Proyek ini menggunakan arsitektur *micro-services / modular* yang terbagi menjadi 3 bagian utama:
 
@@ -21,21 +21,21 @@ graph LR
     API -->|Manajemen Pengguna| DB
 ```
 
-### 1. 🖥️ Frontend (`/frontend`)
+### 1. Frontend (`/frontend`)
 Dasbor antarmuka pengguna yang sangat cepat, interaktif, dan responsif.
 * **Framework:** [Astro v5](https://astro.build/) & [React 19](https://react.dev/)
 * **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
 * **Animasi & Visualisasi:** Motion & Chart.js (React-Chartjs-2)
 * **Fitur Utama:** Visualisasi metrik gizi harian, riwayat deteksi makanan, dan antarmuka unggah foto makanan dengan hasil *overlay* deteksi (*bounding box*) secara langsung.
 
-### 2. ⚙️ Backend API (`/backend`)
+### 2. Backend API (`/backend`)
 Layanan API terpusat yang aman, bertindak sebagai pengelola data utama dan *secure proxy*.
 * **Framework:** [NestJS v11](https://nestjs.com/) (TypeScript)
 * **ORM & Database:** [Prisma v6](https://www.prisma.io/) terhubung ke PostgreSQL ([Supabase](https://supabase.com/))
 * **Keamanan & Autentikasi:** Enkripsi kata sandi dengan Bcrypt, autentikasi berbasis JWT (Passport-JWT), dan proteksi *header* menggunakan Helmet.
 * **Fitur Utama:** Registrasi & login pengguna, autentikasi sesi, penanganan unggahan file (*multipart/form-data* menggunakan Multer), serta meneruskan permintaan analisis citra ke servis AI.
 
-### 3. 🧠 AI & Estimation Service (`/transformer_model`)
+### 3. AI & Estimation Service (`/transformer_model`)
 Mesin inferensi cerdas pengolah gambar dan penghitung estimasi gizi.
 * **Framework:** Python 3 & Flask
 * **AI & Computer Vision:** Integrasi model **Ultralytics API**, penghitungan rasio piksel dan kalibrasi *tray/nampan* (perspektif *warping*, deteksi kontur), serta **Fuzzy Logic** (`fuzzy.py`) untuk penyesuaian tingkat kematangan/kondisi spesifik makanan.
@@ -43,7 +43,7 @@ Mesin inferensi cerdas pengolah gambar dan penghitung estimasi gizi.
 
 ---
 
-## 🚀 Panduan Instalasi & Menjalankan Lokal
+## Panduan Instalasi & Menjalankan Lokal
 
 Pastikan Anda telah menginstal **Node.js (v20+)**, **Python (v3.10+)**, dan memiliki akun/proyek aktif di **Supabase** serta **Ultralytics**.
 
@@ -105,7 +105,7 @@ Aplikasi dasbor NutriSight dapat diakses melalui browser di `http://localhost:43
 
 ---
 
-## 📂 Struktur Direktori Utama
+## Struktur Direktori Utama
 
 ```text
 Research 2/
