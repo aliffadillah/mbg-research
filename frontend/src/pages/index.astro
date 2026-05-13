@@ -1,0 +1,14 @@
+---
+import PublicLayout from '../layouts/PublicLayout.astro';
+import HeroSection from '../features/landing/HeroSection';
+import FeaturesSection from '../features/landing/FeaturesSection';
+import StatsSection from '../features/landing/StatsSection';
+import CTASection from '../features/landing/CTASection';
+---
+
+<PublicLayout title="NutriSight — Monitoring Nutrisi Makanan Berbasis AI">
+  <HeroSection client:load />
+  <FeaturesSection client:visible />
+  <StatsSection client:visible />
+  <CTASection client:visible />
+</PublicLayout>

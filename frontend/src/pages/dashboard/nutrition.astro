@@ -1,0 +1,14 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import NutritionView from '../../features/nutrition/NutritionView';
+---
+
+<DashboardLayout title="Nutrisi — NutriSight" activeRoute="/dashboard/nutrition">
+  <div class="space-y-6">
+    <div>
+      <h1 class="text-xl font-semibold text-gray-900">Database Nutrisi</h1>
+      <p class="text-sm text-gray-500 mt-0.5">Jelajahi informasi nutrisi makanan Indonesia.</p>
+    </div>
+    <NutritionView client:load />
+  </div>
+</DashboardLayout>

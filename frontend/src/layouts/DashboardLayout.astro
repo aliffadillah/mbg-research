@@ -1,0 +1,25 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import DashboardShell from '../features/dashboard/DashboardShell';
+
+interface Props {
+  title?: string;
+  activeRoute?: string;
+}
+
+const { title = 'Dashboard — NutriSight', activeRoute = '/dashboard' } = Astro.props;
+---
+
+<BaseLayout title={title}>
+  <DashboardShell activeRoute={activeRoute} client:load>
+    <slot />
+  </DashboardShell>
+</BaseLayout>
+
+<script>
+  // Redirect to login if not authenticated
+  const token = localStorage.getItem('nutrisight_token');
+  if (!token) {
+    window.location.href = '/login';
+  }
+</script>

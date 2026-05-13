@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import RegisterForm from '../features/auth/RegisterForm';
+---
+
+<BaseLayout title="Daftar — NutriSight">
+  <div class="min-h-screen flex items-center justify-center relative">
+    <div class="absolute inset-0 bg-gradient-to-br from-accent-50 via-white to-primary-50">
+      <div class="absolute top-[20%] right-[10%] w-[400px] h-[400px] rounded-full bg-primary-200/30 blur-[100px]"></div>
+      <div class="absolute bottom-[20%] left-[10%] w-[300px] h-[300px] rounded-full bg-accent-200/20 blur-[80px]"></div>
+    </div>
+    <div class="relative z-10 w-full px-6 py-20">
+      <RegisterForm client:load />
+    </div>
+  </div>
+</BaseLayout>

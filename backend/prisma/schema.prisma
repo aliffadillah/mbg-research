@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(cuid())
+  email     String    @unique
+  password  String
+  name      String?
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  histories History[]
+
+  @@map("users")
+}
+
+model History {
+  id              String   @id @default(cuid())
+  userId          String   @map("user_id")
+  imageUrl        String?  @map("image_url")
+  detectedFoods   Json?    @map("detected_foods")
+  nutritionResult Json?    @map("nutrition_result")
+  createdAt       DateTime @default(now()) @map("created_at")
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("histories")
+}
+
+model Nutrition {
+  id       String  @id @default(cuid())
+  name     String  @unique
+  calories Float
+  protein  Float
+  fat      Float
+  carbs    Float
+  category String  @default("umum")
+  imageUrl String? @map("image_url")
+  fiber    Float   @default(0)
+
+  @@map("nutritions")
+}
+
+model DailyMenu {
+  id           String @id @default(cuid())
+  name         String @unique
+  foods        Json
+  largePortion Json   @map("large_portion")
+  smallPortion Json   @map("small_portion")
+
+  @@map("daily_menus")
+}
