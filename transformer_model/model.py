@@ -138,8 +138,7 @@ if __name__ == "__main__":
 	print(f"   SUPABASE_URL        : {'SET' if supabase_url else 'MISSING'}")
 	print(f"   SUPABASE_KEY        : {'SET' if supabase_key else 'MISSING'}")
 	print(f"   TRANSFORMER_PORT    : {port}")
-	print(f"
-	Transformer API running on http://0.0.0.0:{port}")
+	print(f"Transformer API running on http://0.0.0.0:{port}")
 
 	app.run(host="0.0.0.0", port=port, debug=debug)
 
