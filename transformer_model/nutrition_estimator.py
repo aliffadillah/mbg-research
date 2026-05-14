@@ -152,15 +152,23 @@ NUTRITION_CACHE: Dict[str, Optional[Dict[str, float]]] = {}
 
 def get_api_config() -> Tuple[Optional[str], Optional[str]]:
 	api_url = (
-		os.getenv("ULTRALYTICS_API_URL")
-		or os.getenv("API_MENU")
+		os.getenv("API_MENU")
+		or os.getenv("ULTRALYTICS_API_URL")
 		or os.getenv("ULTRALYTICS_API")
 	)
 	api_key = (
-		os.getenv("ULTRALYTICS_API_PRIMARY")
+		os.getenv("API_KEY_ULTRALYTICS")
+		or os.getenv("ULTRALYTICS_API_PRIMARY")
 		or os.getenv("API_MAIN_KEY")
 		or os.getenv("ULTRALYTICS_API_KEY")
 	)
+	
+	if api_url:
+		api_url = api_url.strip().strip("\"'")
+		if not api_url.rstrip("/").endswith("/predict"):
+			api_url = api_url.rstrip("/") + "/predict"
+	if api_key:
+		api_key = api_key.strip().strip("\"'")
 	return api_url, api_key
 
 
@@ -1090,7 +1098,7 @@ def estimate_from_file(
 		data = {"conf": conf, "iou": iou, "imgsz": imgsz}
 		response = requests.post(
 			api_url,
-			headers={"x-api-key": api_key},
+			headers={"Authorization": f"Bearer {api_key}"},
 			files=files,
 			data=data,
 			timeout=timeout_s,

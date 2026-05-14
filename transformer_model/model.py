@@ -13,8 +13,7 @@ from nutrition_estimator import (
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.abspath(os.path.join(BASE_DIR, ".."))
-load_dotenv(os.path.join(ROOT_DIR, "backend", ".env"), override=False)
-load_dotenv(os.path.join(BASE_DIR, ".env"), override=True)
+load_dotenv(os.path.join(ROOT_DIR, ".env"), override=True)         # root .env (global, satu-satunya sumber)
 
 app = Flask(__name__)
 app.config["JSON_SORT_KEYS"] = False
@@ -128,6 +127,19 @@ def estimate() -> Any:
 
 
 if __name__ == "__main__":
+	env_file = os.path.join(ROOT_DIR, ".env")
+	api_url, api_key = get_api_config()
+	supabase_url, supabase_key = get_supabase_config()
 	port = int(os.getenv("TRANSFORMER_PORT", "3002"))
 	debug = os.getenv("FLASK_DEBUG", "0") == "1"
+
+	print(f"   API_MENU (url)      : {api_url or 'MISSING'}")
+	print(f"   API_KEY_ULTRALYTICS : {'SET (' + api_key[:6] + '...)' if api_key else 'MISSING'}")
+	print(f"   SUPABASE_URL        : {'SET' if supabase_url else 'MISSING'}")
+	print(f"   SUPABASE_KEY        : {'SET' if supabase_key else 'MISSING'}")
+	print(f"   TRANSFORMER_PORT    : {port}")
+	print(f"
+	Transformer API running on http://0.0.0.0:{port}")
+
 	app.run(host="0.0.0.0", port=port, debug=debug)
+
